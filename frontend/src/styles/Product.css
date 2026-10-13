@@ -1,0 +1,238 @@
+.product-page-content {
+    background-color: #96633D; /* Brown background as in the image */
+    min-height: 700px; /* Adjust as needed */
+    color: white; /* Default text color */
+}
+
+.product-container {
+    padding-top: 50px; /* Space from the top of the brown section */
+    padding-bottom: 50px;
+}
+
+/* --- Product Image Section --- */
+.product-image-section {
+    position: relative;
+    /* Add padding for the action buttons */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.action-buttons {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding-right: 15px; /* Space between buttons and image */
+    z-index: 10;
+}
+
+.icon-button {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border: none;
+    border-radius: 50%; /* Circular buttons */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.icon-button img {
+    width: 20px; /* Size for the icons inside buttons */
+    height: 20px;
+    filter: invert(1); /* Makes SVG/PNG icons white if they are dark */
+}
+
+.product-main-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-left: 50px; /* Offset for the action buttons */
+}
+
+
+/* --- Product Details Section --- */
+.product-details-section {
+    padding-left: 30px; /* Space between image and details */
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.current-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700; /* Gold color for current price */
+}
+
+.sold-info, .rating-info {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rating-info {
+    display: flex;
+    align-items: center;
+}
+.rating-info span {
+    margin-left: 5px; /* Space for the star icon */
+}
+
+.product-title {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.product-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- Color Options --- */
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.color-swatch.active {
+    border-color: #FFD700; /* Highlight active color */
+    transform: scale(1.1);
+}
+
+/* --- Size Options --- */
+.size-options {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for many sizes */
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.size-button {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-width: 50px; /* Ensure buttons have a minimum width */
+    text-align: center;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.size-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+.size-button.active {
+    background-color: #FFD700; /* Gold for active size */
+    color: #4A2C0E; /* Dark brown text for active size */
+    border-color: #FFD700;
+    font-weight: bold;
+}
+
+/* --- Add to Cart & Quantity Control --- */
+.add-to-cart-button {
+    background-color: #fff; /* White background */
+    color: #4A2C0E; /* Dark brown text */
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    min-width: 150px;
+}
+
+.add-to-cart-button:hover {
+    background-color: #f0f0f0;
+}
+
+.quantity-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.quantity-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.quantity-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 15px;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .product-image-section {
+        margin-bottom: 30px;
+        flex-direction: column; /* Stack buttons above image on smaller screens */
+        align-items: center !important;
+    }
+    .action-buttons {
+        position: static; /* Remove absolute positioning */
+        flex-direction: row; /* Buttons side-by-side */
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    .icon-button {
+        margin: 0 10px; /* Space out horizontal buttons */
+    }
+    .product-main-image {
+        margin-left: 0; /* Remove offset */
+    }
+    .product-details-section {
+        padding-left: 15px; /* Adjust padding for smaller screens */
+        padding-right: 15px;
+    }
+    .add-to-cart-button {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .d-flex.align-items-center.mb-4 { /* Target the row containing add to cart and quantity */
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .quantity-control {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,38 @@
+body {
+  background-color: #96633d;
+}
+
+.profile {
+  background-color: #d9d9d9;
+  width: 768px;
+  height: 243px;
+  border-radius: 150px;
+  overflow: hidden;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  background-color: #907a46;
+}
+
+.profile-picture img {
+  height: 100%;
+  width: 80%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-small {
+  background-color: #d9d9d9;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.whitefield {
+    width: 90%;
+    height: auto;
+    min-height: 100px;
+    background-color: white;
+    border-radius: 10px;
+}

@@ -1,0 +1,91 @@
+.register {
+    background-color: #C5BEB8;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+    border-radius: 20px;
+    border: 15px solid #AC7F41;
+}
+
+.input-label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-input {
+    height: 45px;
+    border: solid 1px #ccc; 
+    border-radius: 5px;
+    padding-right: 40px; 
+    padding-left: 10px;
+    width: 100%; 
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1570ef;
+}
+
+.button {
+    background-color: #1570ef;
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.password-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.password-header .input-label {
+    margin-bottom: 0;
+}
+
+.forgot-link {
+    color: #1570ef;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Icon positioning */
+.password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.eye-icon-img {
+    width: 20px; 
+    height: 20px; 
+    display: block;
+    opacity: 0.6;
+}

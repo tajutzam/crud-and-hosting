@@ -1,0 +1,33 @@
+.Header {
+    background-color: #96633D;
+}
+
+.hero-banner {
+    border-radius: 25px;
+}
+
+.hero-product {
+    border-radius: 10px;
+}
+
+.hero-product img {
+    object-fit: contain;
+}
+
+.hero-banner-small {
+    border-radius: 40px;
+}
+
+.arrow-container {
+    background-color: white;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-container img {
+    width: 75%;
+}

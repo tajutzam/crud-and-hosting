@@ -1,0 +1,23 @@
+.analytics {
+  background-color: #96633d;
+  min-height: 512px;
+}
+
+.button {
+  border-radius: 16px;
+  background-color: white;
+  width: 174px;
+  min-height: 55px;
+}
+
+.analytic-small {
+  width: 100%;
+  border-radius: 16px;
+  background-color: white;
+}
+
+.analytic-large {
+  width: 100%;
+  border-radius: 16px;
+  background-color: white;
+}

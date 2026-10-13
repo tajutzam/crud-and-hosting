@@ -1,0 +1,32 @@
+/* ... Keep your existing CSS from the previous table ... */
+
+body {
+    background-color: #EEEEEE;
+}
+
+/* The specific Brown Button at the top right */
+.btn-brown {
+    background-color: #A06941; /* Matches the earthy brown in the image */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-brown:hover {
+    background-color: #8a5733; /* Slightly darker on hover */
+    color: white;
+}
+
+/* Ensure the layout handles the header spacing */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}

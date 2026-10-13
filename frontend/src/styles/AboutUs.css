@@ -1,0 +1,49 @@
+.about {
+  background-color: #96633D; /* The brown background from the image */
+  min-height: 500px; /* Adjust as needed */
+  padding-bottom: 5rem; /* Add some padding at the bottom */
+}
+
+.about-main-title {
+  color: white; /* Title color */
+  font-size: 2.5rem; /* Large font size for the title */
+  font-weight: bold;
+  border-left: 8px solid #FFD700; /* Yellow border to the left of the title */
+  padding-left: 15px; /* Spacing between border and text */
+}
+
+.about-section {
+  margin-bottom: 4rem; /* Spacing between sections */
+}
+
+.about-text {
+  color: white; /* Text color */
+  font-size: 1.1rem; /* Slightly larger text */
+  line-height: 1.8; /* Improve readability */
+  text-align: justify; /* Justify text as in the image */
+  padding: 0 15px; /* Add some horizontal padding */
+}
+
+.about-image {
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto;
+  border-radius: 10px; /* Slightly rounded corners for images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Responsive adjustments for smaller screens if needed */
+@media (max-width: 991px) {
+  .about-section {
+    flex-direction: column; /* Stack image and text vertically */
+  }
+  .about-section .col-lg-6 {
+    margin-bottom: 2rem; /* Add space between stacked items */
+  }
+  .about-section .col-lg-6:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.text {
+    font-size: 20px;
+}

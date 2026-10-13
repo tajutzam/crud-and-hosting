@@ -1,0 +1,103 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 1000; /* Ensure it stays on top of content */
+}
+
+.logo {
+  width: 50px;
+  object-fit: contain;
+}
+
+.profilelogo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Make profile pic circular */
+  object-fit: cover;
+}
+
+.links p {
+  margin: 0;
+}
+
+.shadow {
+  height: 5px;
+  box-shadow: 0 5px 3px -3px rgba(0, 0, 0, 0.1); /* Lightened shadow slightly */
+  user-select: none;
+}
+
+.text-none {
+  color: rgba(240, 248, 255, 0);
+}
+
+/* --- Desktop Nav Links --- */
+.links .nav-item {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px 0;
+}
+
+.links .nav-item:hover {
+  color: #A06842;
+}
+
+.links .nav-item.active {
+  font-weight: 700;
+  color: #A06842;
+  border-bottom: 2px solid #A06842;
+}
+
+/* --- Mobile Specific Styles --- */
+
+.icon-btn-plain {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-admin-menu {
+  position: absolute;
+  top: 100%; /* Push it exactly below the header bar */
+  left: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.mobile-nav-item {
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-bottom: 1px solid #f8f8f8;
+  transition: background-color 0.2s;
+}
+
+.mobile-nav-item:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-item:hover {
+  background-color: #fafafa;
+  color: #A06842;
+}
+
+.mobile-nav-item.active {
+  color: #A06842;
+  font-weight: 700;
+  background-color: #fcfcfc;
+  border-left: 4px solid #A06842; /* Visual indicator for active mobile tab */
+}

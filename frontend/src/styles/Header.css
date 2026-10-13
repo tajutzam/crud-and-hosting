@@ -1,0 +1,194 @@
+/* ... existing desktop styles ... */
+.navbar {
+    background-color: white;
+    width: 80%;
+    max-width: 2000px;
+    height: auto;
+    border-radius: 50px;
+    padding: 0;
+    margin: 0;
+    border-bottom: black 1px solid;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-content {
+    width: 100%;
+    height: auto;
+    border-radius: 50px;
+    padding: 0;
+    margin: 0;
+    color: black
+}
+
+/* --- Mobile Navbar Styles --- */
+.navbar-small {
+    width: 100%;
+    background-color: white;
+    height: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1050; /* Ensure it stays on top */
+}
+
+/* Reset button styles for icons */
+.icon-btn-plain {
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+}
+
+.icon-btn-plain:hover {
+    color: #A06842;
+}
+
+/* Mobile Dropdown Menu */
+.mobile-menu-dropdown {
+    position: absolute;
+    top: 60px; /* Directly below the navbar */
+    right: 0;
+    width: 200px; /* Or 100% if you prefer full width */
+    background-color: white;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-top: none;
+}
+
+.mobile-menu-item {
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-item:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-item:hover {
+    background-color: #f9f9f9;
+    color: #A06842;
+}
+
+.mobile-menu-item.active {
+    color: #A06842;
+    font-weight: 700;
+    background-color: #fafafa;
+}
+
+/* Search bar styles (reused/tweaked) */
+.mobile-search-container {
+    height: 40px;
+    border-radius: 20px;
+    background-color: #f1f1f1; 
+    border: 1px solid transparent;
+}
+
+.mobile-search-container:focus-within {
+    border-color: #A06842;
+    background-color: white;
+}
+
+.mobile-search-input {
+    font-size: 1rem;
+    color: black;
+    outline: none;
+}
+
+/* Mobile Icon Sizes */
+.mobile-icon {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.mobile-icon img {
+    height: 22px; /* Slightly adjusted for better visual balance */
+}
+
+/* ... existing desktop search/icon styles ... */
+.search {
+    width: 100%;
+    height: 80%;
+    min-height: 41px;
+    border-radius: 20px;
+    border: 1.25px solid black;
+    transition: box-shadow 0.2s;
+}
+
+.search:focus-within {
+    box-shadow: 0 0 0 2px rgba(160, 104, 66, 0.2);
+    border-color: #A06842;
+}
+
+.searchfield {
+    width: 85%;
+    color: black;
+    outline: none;
+    font-family: inherit;
+}
+
+.searchfield::placeholder {
+    color: #6c757d;
+    opacity: 0.8;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.active-icon,
+.icon:hover,
+.mobile-icon:hover {
+    background-color: rgba(128, 128, 128, 0.15); 
+}
+
+.icon img {
+    height: 23px;
+}
+
+.nav-link-custom {
+    text-decoration: none;
+    color: #000; 
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-link-custom:hover {
+    color: #A06842; 
+}
+
+.nav-link-custom.active {
+    font-weight: 700; 
+    color: #A06842; 
+    border-bottom: 2px solid #A06842; 
+}
+
+.icon-link {
+    text-decoration: none;
+    display: block;
+}
+
+.icon img {
+    max-width: 100%;
+    height: auto;
+}

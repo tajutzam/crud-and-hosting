@@ -1,0 +1,83 @@
+@keyframes fadeInAnimation {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); /* Mulai agak di bawah */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); /* Posisi normal */
+  }
+}
+
+.fade-in {
+  opacity: 0; /* Awalnya sembunyi */
+  animation: fadeInAnimation 1.5s ease-out forwards;
+}
+
+
+.about {
+  background-color: #96633D; /* The brown background from the image */
+  min-height: 100vh; /* Adjust as needed */
+  padding-bottom: 5rem; /* Add some padding at the bottom */
+  color: white;
+}
+
+.about-us-heading {
+  color: white; /* Title color */
+  font-size: 2.5rem; /* Large font size for the title */
+  font-weight: bold;
+  border-left: 8px solid #FFFFFF; /* Yellow border to the left of the title */
+  padding-left: 15px; /* Spacing between border and text */
+  font-family: 'montserrat', sans-serif;
+}
+
+.about-section {
+  margin-bottom: 8px; /* Spacing between sections */
+}
+
+.about-text {
+  color: white; /* Text color */
+  font-size: 18px; /* Slightly larger text */
+  line-height: 1.8; /* Improve readability */
+  padding: 0 15px; /* Add some horizontal padding */
+  font-family: 'montserrat', sans-serif;
+  text-align: justify; 
+}
+
+.about-image-block {
+  object-fit: cover; /* Agar gambar tidak gepeng (crop otomatis) */
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+  border-radius: 12px; /* Slightly rounded corners for images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Responsive adjustments for smaller screens if needed */
+@media (max-width: 991px) {
+  .about-us-heading {
+    font-size: 24px; /* Adjust font size for smaller screens */
+  }
+  .about-section {
+    flex-direction: column; /* Stack image and text vertically */
+  }
+  .about-section .col-lg-6 {
+    margin-bottom: 2rem; /* Add space between stacked items */
+  }
+  .about-section .col-lg-6:last-child {
+    margin-bottom: 0;
+  }
+  .about-text {
+    padding: 0; 
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 16px;
+  }
+  .about-image-block {
+    max-width: 70%;
+  }
+}
+
+.text {
+    font-size: 20px;
+}

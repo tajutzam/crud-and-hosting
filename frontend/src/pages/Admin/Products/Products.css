@@ -1,0 +1,19 @@
+
+/* The specific Brown Button at the top right */
+.button-add {
+    background-color: #A06941; /* Matches the earthy brown in the image */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.button-add:hover {
+    background-color: #8a5733; /* Slightly darker on hover */
+    color: white;
+}

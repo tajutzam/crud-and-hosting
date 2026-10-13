@@ -1,0 +1,44 @@
+body {
+    background-color: #96633D;
+}
+
+.summary {
+    width: 100%;
+    position: sticky;
+    top: 20%;
+    margin-top: 1.4rem;
+}
+
+.summary-dark {
+    height: auto;
+    background-color: #C5BEB8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.summary-light {
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.155);
+}
+
+.button {
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    border-radius: 0;
+    padding-top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.faq-section {
+    background-color: #C5BEB8;
+}
+
+.faq {
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    min-height: 200px;
+}

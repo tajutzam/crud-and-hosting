@@ -1,0 +1,80 @@
+/* Page Background (matches your previous file) */
+body {
+  background-color: #EEEEEE;
+}
+
+/* The gray pill-shaped toolbar at the top */
+.toolbar-container {
+  background-color: #F8F9FA; /* Very light gray */
+  border-radius: 12px; /* Soft rounded corners */
+}
+
+/* Remove default button styles for top icons */
+.icon-btn {
+  background: none;
+  border: none;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon-btn:hover {
+  color: #000;
+}
+
+/* Table Header Styling */
+.custom-table thead th {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #212529;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+/* Table Row Styling */
+.custom-table tbody td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* The "Striped" effect - forcing a specific gray for even rows */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: transparent; /* Reset odd rows */
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  --bs-table-accent-bg: #F2F2F2; /* Light gray for even rows */
+}
+
+/* Action Buttons (Square with color) */
+.action-btn {
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 4px; /* Slight radius, not fully round */
+  transition: opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.85;
+}
+
+.btn-view {
+  background-color: #4DA3FF; /* Blue */
+}
+
+.btn-edit {
+  background-color: #FFC107; /* Yellow */
+}
+
+.btn-delete {
+  background-color: #FF5B5B; /* Red */
+}
