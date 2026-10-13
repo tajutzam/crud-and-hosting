@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\UserAddressController;
@@ -28,6 +29,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::prefix('user')->group(function() {
         Route::post('avatar', [AuthController::class, 'updateAvatar']);
         Route::apiResource('address', UserAddressController::class);
+        // User profile endpoints
+        Route::get('profile', [UserController::class, 'profile']);
+        Route::put('profile', [UserController::class, 'updateProfile']);
     });
 });
 
