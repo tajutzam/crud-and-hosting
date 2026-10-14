@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import "./Search.css";
-import Header from "../../Header";
 
 // MOCK DATA: Replace this with your actual API call or data source later
 const MOCK_PRODUCTS = [
@@ -67,7 +66,6 @@ function Search() {
 
   return (
     <div>
-      <Header></Header>
       <div className="container-xxl py-5">
         <div className="row">
           <div className="col-12 mb-4">

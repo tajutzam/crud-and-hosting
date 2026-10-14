@@ -12,7 +12,6 @@ import {
   BiX,
 } from "react-icons/bi";
 
-import Header from "../Header";
 import BootstrapModal from "../../../components/BootstrapModal";
 import orderService from "../../../services/orderService";
 

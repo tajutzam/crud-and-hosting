@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/ProductCard.css";
 import PlaceholderProductCard from "../assets/PlaceholderProductCard.png";
-import { useCart } from "../contexts/CartContext";
+import { useCart } from "../hooks/useCart";
 
 const BACKEND_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/api\/?$/, '');
 
@@ -44,40 +44,29 @@ function ProductCard({ id, product, name, slug, categoryId, description, basePri
   };
 
   return (
-    <div className="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-      <div 
-        className="card h-100 shadow-sm transition border-0 cursor-pointer"
+    <div className="col-6 col-md-4 col-lg-3 col-xl-3 mb-4">
+      <article
+        className="product-card-ui h-100"
         onClick={() => slug && navigate(`/product/${slug}`)}
-        style={{ cursor: "pointer" }}
+        role="link"
+        tabIndex={0}
+        onKeyDown={(event) => event.key === 'Enter' && slug && navigate(`/product/${slug}`)}
       >
         <img
           src={getImageUrl()}
           alt={name || "Product Image"}
-          className="card-img-top object-fit-cover"
-          style={{ height: "180px", width: "100%", objectFit: "cover" }}
+          className="product-card-image"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = PlaceholderProductCard;
           }}
         />
-        <div className="card-body px-2 py-2 d-flex flex-column">
-          <p className="product-name fw-normal text-start" style={{ fontSize: "1rem" }}>
-            {name}
-          </p>
-          <div className="d-flex flex-row align-items-center justify-content-between mt-auto">
-            <span className="fw-medium" style={{ fontSize: "1rem" }}>
-              Rp. {basePrice ? Number(basePrice).toLocaleString("id-ID") : "0"}
-            </span>
+        <div className="product-card-body">
+          <p className="product-name">{name}</p>
+          <div className="product-card-footer">
+            <span className="product-price">Rp {basePrice ? Number(basePrice).toLocaleString("id-ID") : "0"}</span>
             <button
-              className="plus btn btn-outline-dark btn-sm rounded-circle ms-2"
-              style={{
-                width: "32px",
-                height: "32px",
-                padding: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
+              className="plus"
               onClick={handleAddToCart}
               aria-label={`Add ${name} to cart`}
               type="button"
@@ -87,7 +76,7 @@ function ProductCard({ id, product, name, slug, categoryId, description, basePri
             </button>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   );
 }

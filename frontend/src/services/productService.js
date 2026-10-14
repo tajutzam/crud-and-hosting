@@ -1,17 +1,11 @@
-import authService from "./authService";
+import { get, put, del, postForm } from './api';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
 const productService = {
   async getAllProducts() {
     try {
-      const response = await fetch(`${API_BASE_URL}/products`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
+      const data = await get('/products');
       return data;
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -21,16 +15,7 @@ const productService = {
 
   async getProductById(id) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products/${id}`);
-      
-      if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error(`Product with id ${id} not found`);
-        }
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
+      const data = await get(`/products/${id}`);
       return data;
     } catch (error) {
       console.error(`Error fetching product with id ${id}:`, error);
@@ -40,13 +25,7 @@ const productService = {
 
   async getProductsByCategory(category) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products?category=${encodeURIComponent(category)}`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
+      const data = await get(`/products?category=${encodeURIComponent(category)}`);
       return data;
     } catch (error) {
       console.error(`Error fetching products by category ${category}:`, error);
@@ -56,13 +35,7 @@ const productService = {
 
   async searchProducts(query) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products/search?q=${encodeURIComponent(query)}`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
+      const data = await get(`/products?q=${encodeURIComponent(query)}`);
       return data;
     } catch (error) {
       console.error(`Error searching products with query "${query}":`, error);
@@ -72,46 +45,8 @@ const productService = {
 
   async createProduct(productData) {
     try {
-      const token = authService.getToken();
-      const formData = new FormData();
-
-      Object.keys(productData).forEach((key) => {
-        if (key === 'images') {
-          // Loop setiap file yang ada di dalam array formData.images
-          if (Array.isArray(productData.images)) {
-            productData.images.forEach((file) => {
-              if (file instanceof File) {
-                formData.append('images[]', file); // Dikirim sebagai array 'images[]'
-              }
-            });
-          }
-        } else if (productData[key] !== null && productData[key] !== undefined) {
-          formData.append(key, productData[key]);
-        }
-      });
-
-      const response = await fetch(`${API_BASE_URL}/products`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          // JANGAN isi Content-Type! Biarkan browser yang mengaturnya secara otomatis
-        },
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        let errMsg = errorData.message;
-        if (errorData.errors && typeof errorData.errors === 'object') {
-          const firstKey = Object.keys(errorData.errors)[0];
-          if (firstKey && errorData.errors[firstKey].length > 0) {
-            errMsg = errorData.errors[firstKey][0];
-          }
-        }
-        throw new Error(errMsg || `HTTP error! status: ${response.status}`);
-      }
-
-      return await response.json();
+      const data = await postForm('/products', productData);
+      return data;
     } catch (error) {
       console.error('Error creating product:', error);
       throw error;
@@ -120,67 +55,26 @@ const productService = {
 
   async updateProduct(slug, productData) {
     try {
-      const token = authService.getToken();
-      const formData = new FormData();
+      // Remove images from productData for the main update, handle images separately
+      const { images: _images, ...rest } = productData;
 
-      formData.append('_method', 'PUT');
-
-      Object.keys(productData).forEach((key) => {
-        if (key !== 'images' && productData[key] !== null && productData[key] !== undefined) {
-          formData.append(key, productData[key]);
-        }
-      });
-
-      // Kirim berkas gambar baru jika ada
+      const data = await put(`/products/${slug}`, rest);
+      
+      // Handle new image uploads
       if (Array.isArray(productData.images) && productData.images.length > 0) {
-        productData.images.forEach((file) => {
-          if (file instanceof File) {
-            formData.append('images[]', file);
-          }
-        });
+        await postForm(`/products/${slug}/images`, productData.images);
       }
 
-      const response = await fetch(`${API_BASE_URL}/products/${slug}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        let errMsg = errorData.message;
-        if (errorData.errors && typeof errorData.errors === 'object') {
-          const firstKey = Object.keys(errorData.errors)[0];
-          if (firstKey && errorData.errors[firstKey].length > 0) {
-            errMsg = errorData.errors[firstKey][0];
-          }
-        }
-        throw new Error(errMsg || `HTTP error! status: ${response.status}`);
-      }
-
-      return await response.json();
+      return data;
     } catch (error) {
-      console.error('Error updating product:', error);
+      console.error(`Error updating product with slug ${slug}:`, error);
       throw error;
     }
   },
 
   async deleteProduct(slug) {
     try {
-      const token = authService.getToken();
-      const response = await fetch(`${API_BASE_URL}/products/${slug}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
+      await del(`/products/${slug}`);
       return true;
     } catch (error) {
       console.error(`Error deleting product with slug ${slug}:`, error);
@@ -190,4 +84,3 @@ const productService = {
 };
 
 export default productService;
-

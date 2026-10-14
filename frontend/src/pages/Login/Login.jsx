@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./Login.css";
 import dishineLogo from "../../assets/Dishine Logo.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import EyeFill from "../../assets/eye-fill.svg";
 import EyeShut from "../../assets/eye-slash.svg";
 
 function Login() {
-  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 

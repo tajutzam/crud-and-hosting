@@ -1,66 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
 :root {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  color: #211b18;
+  background: #fbfaf8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #211b18;
+  --muted: #756d67;
+  --cream: #fbfaf8;
+  --sand: #f2ebe4;
+  --line: #e8e0d8;
+  --brown: #8d5d3f;
+  --brown-dark: #5e3c2a;
+  --accent: #c8754b;
+  --shadow: 0 18px 45px rgba(69, 43, 28, .10);
 }
 
-body {
-  background-color: #96633D;
-  font-family: 'Montserrat', sans-serif;
-}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: var(--cream); color: var(--ink); }
+a { color: inherit; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.app-layout { min-height: 100vh; }
+main { min-height: 70vh; }
+.display-font { font-family: 'Playfair Display', serif; }
+.page-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+.btn-brand { background: var(--brown-dark); color: #fff; border: 0; border-radius: 999px; padding: .7rem 1.25rem; font-weight: 600; transition: .2s ease; }
+.btn-brand:hover { background: var(--brown); color: #fff; transform: translateY(-1px); }
+.surface { background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
 
-.card{
-  justify-self: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 10px;
-  text-align: center;
-  max-width: 250px;
-  display: inline-block;
-  transition: all 0.2s;
-}
-
-.card:hover {
-  translate: 0 -10px;
-}
-
-.card .card-image {
-  width: 200px;
-  object-fit: contain;
-  max-width: 60%;
-  height: auto;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.card .card-title {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  color: rgb(39, 39, 39);
-}
-
-.card .card-text {
-  font-family: Arial, sans-serif;
-  color: rgb(73, 73, 73);
-}
-
-.button{
-  background-color: rgb(68, 93, 139);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.student {
-  font-family: Arial, sans-serif;
-  font-size: 1em;
-  padding: 10px;
-  border: 1px solid grey;
-  margin: 10px 0px;
-}
-
-.student p {
-  margin: 0;
+@media (max-width: 767px) {
+  .page-shell { width: min(100% - 24px, 1180px); }
 }

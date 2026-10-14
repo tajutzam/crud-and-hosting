@@ -1,5 +1,4 @@
 
-import Header from "../components/layout/Header";
 import "../styles/HomePage.css";
 import Catalogue from "../components/Catalogue";
 
@@ -10,31 +9,33 @@ import LeftArrow from '../assets/LeftArrow.png'
 import RightArrow from '../assets/RightArrow.png'
 
 function HomePage() {
-  return (<div>
-          <Header></Header>
-          <div className="Header w-100 pb-5 py-5 d-flex justify-content-center align-items-center">
-              <div className="d-none d-md-flex container-xl mt-5 p-2 row d-flex justify-content-center align-items-center">
-                <div className="col-1 me-xl-auto">
-                  <div className="arrow-container">
-                    <img src={LeftArrow} className="" alt="" />
-                  </div>
-                </div>
-                <div className="hero-banner-small row col-0 col-lg-2 d-none d-xl-flex justify-content-center">
-                  <img src={dishineHeroSmall1} className="hero-banner-small w-75" alt="" />
-                </div>
-                <img src={dishineHero1} className="hero-banner col-8 col-lg-7 col-xl-6 d-flex justify-content-center" alt="Dishine Hero 1 - New Collection"></img>
-                <div className="row col-0 col-lg-2 d-none d-xl-flex justify-content-center">
-                  <img src={dishineHeroSmall2} className="hero-banner-small w-75" alt="" />
-                </div>
-                <div className="col-1 ms-xl-auto">
-                  <div className="arrow-container">
-                    <img src={RightArrow} className="" alt="" />
-                  </div>
-                </div>
-              </div>
+  return (
+    <div className="home-page">
+      <section className="home-hero">
+        <div className="hero-copy">
+          <div className="hero-kicker"><span />New season / 2025</div>
+          <h1>Quiet style,<br /><em>made personal.</em></h1>
+          <p className="hero-description">Everyday pieces designed with quiet details, honest materials, and room for you to make them yours.</p>
+          <div className="hero-actions">
+            <a className="btn-brand hero-button" href="#catalogue">Explore collection <span>↗</span></a>
+            <a className="hero-text-link" href="#catalogue">View essentials <span>↓</span></a>
           </div>
-          <Catalogue></Catalogue>
-  </div>
+          <div className="hero-proof"><strong>01</strong><span /> <p>Designed for<br />everyday living</p></div>
+        </div>
+        <div className="hero-gallery">
+          <div className="hero-orbit orbit-one" />
+          <div className="hero-orbit orbit-two" />
+          <div className="hero-gallery-label"><span>DS</span><b>THE<br />ESSENTIAL<br />EDIT</b></div>
+          <img className="hero-side-image left" src={dishineHeroSmall1} alt="Dishine collection" />
+          <figure className="hero-main-figure">
+            <img className="hero-main-image" src={dishineHero1} alt="Dishine new collection" />
+            <figcaption>New collection <span>—</span> 01 / 03</figcaption>
+          </figure>
+          <img className="hero-side-image right" src={dishineHeroSmall2} alt="Dishine collection" />
+        </div>
+      </section>
+      <section id="catalogue" className="catalogue-section"><Catalogue /></section>
+    </div>
   )
 }
 

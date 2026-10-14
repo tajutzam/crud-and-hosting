@@ -1,4 +1,3 @@
-import Header from "../components/layout/Header";
 import "../styles/AboutUs.css";
 
 import image1 from '../assets/image1.png';
@@ -7,7 +6,6 @@ import image2 from '../assets/image2.png';
 function AboutUs() {
     return (
         <div>
-            <Header /> 
 
             <div className="about pt-5 pb-5">
                 <div className="mt-5 container-xxl text-white">

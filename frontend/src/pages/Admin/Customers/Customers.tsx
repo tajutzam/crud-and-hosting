@@ -10,7 +10,6 @@ import {
   BiTrash,
 } from "react-icons/bi";
 
-import Header from "../Header";
 
 // Define the shape of your data
 type Customer = {
@@ -32,7 +31,6 @@ const customers: Customer[] = [
 const Customers = () => {
   return (
     <div className="container-fluid mt-4">
-      <Header></Header>
       <div className="container-xl py-5 mt-5">
         <h4 className="mb-4 fw-bold text-dark">Customers</h4>
 

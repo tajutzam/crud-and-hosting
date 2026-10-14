@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import '../styles/Login.css';
 import dishineLogo from '../assets/Dishine Logo.png';
 import EyeFill from '../assets/eye-fill.svg';
@@ -31,25 +31,20 @@ function Login() {
       return;
     }
 
-    try {
-      const result = await login(email, password);
+    const result = await login(email, password);
 
-      if (result.success) {
-            // Ambil data user dari response backend
-            const user = result.data.user;
-
-            // Arahkan ke /admin/dashboard jika role_id = 1 atau name = 'Admin'
-            if (user.role_id === 1 || user.role?.name?.toLowerCase() === 'admin') {
-            navigate('/admin/dashboard');
-            } else {
-            navigate('/'); // Atau halaman utama customer
-            }
-        }
-    } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      const user = result.user;
+      if (user?.role_id === 1 || user?.role?.name?.toLowerCase() === 'admin') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/');
+      }
+    } else {
+      setError(result.error || 'Login failed. Please try again.');
     }
+
+    setLoading(false);
   };
 
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 import '../styles/Register.css'
 import dishineLogo from '../assets/Dishine Logo.png'
 import EyeFill from '../assets/eye-fill.svg'
@@ -6,9 +8,30 @@ import EyeShut from '../assets/eye-slash.svg'
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { register } = useAuth();
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(prevShowPassword => !prevShowPassword);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setError('');
+        setLoading(true);
+
+        const result = await register({ name, email, password });
+        if (result.success) {
+            navigate('/');
+        } else {
+            setError(result.error || 'Registration failed. Please try again.');
+        }
+        setLoading(false);
     };
 
     return (
@@ -19,17 +42,22 @@ function Register() {
                         <img src={dishineLogo} className='w-75' alt="Dishine Logo" />
                     </div>
                     <div className='col-lg-5 col-sm-10 d-flex m-auto justify-content-center'>
-                        <form className='form'>
+                        <form className='form' onSubmit={handleSubmit}>
                             <h3 className='mb-3'>
                                 Create an account
                             </h3>
-                            <p>
-                                Email
-                            </p>
+                            {error && <div className='alert alert-danger mb-3' role='alert'>{error}</div>}
+                            <p>Name</p>
+                            <input className='mb-3 form-input' type='text' value={name} onChange={(e) => setName(e.target.value)} required disabled={loading} />
+                            <p>Email</p>
                             <input
                                 className='mb-3 form-input'
                                 type='email'
                                 placeholder='Enter your email'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                disabled={loading}
                             />
 
                             <p>
@@ -40,6 +68,10 @@ function Register() {
                                     className='form-input'
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder='Enter your password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    disabled={loading}
                                 />
                                 <span
                                     className='password-toggle-icon'
@@ -53,14 +85,14 @@ function Register() {
                                 </span>
                             </div>
 
-                            <button className='button mb-3' type='submit'>
-                                Create account
+                            <button className='button mb-3' type='submit' disabled={loading}>
+                                {loading ? 'Creating account...' : 'Create account'}
                             </button>
                             <p className='text-center'>
                                 Already have an account?
-                                <a href="" className='link ms-2'>
+                                <Link to="/login" className='link ms-2'>
                                     Log In
-                                </a>
+                                </Link>
                             </p>
                         </form>
                     </div>

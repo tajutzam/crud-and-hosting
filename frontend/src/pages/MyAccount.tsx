@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BiEdit, BiSave, BiX } from "react-icons/bi";
-import Header from "../components/layout/Header";
 import "../styles/MyAccount.css";
 import BootstrapModal from "../components/BootstrapModal";
 import Guest from "../assets/Guest.png";
@@ -176,7 +175,6 @@ function MyAccount() {
   if (loading) {
     return (
       <div>
-        <Header />
         <div className="container-xl d-flex flex-column pt-5">
           <p className="fs-1 fw-bold text-light text-center mt-5">My Account</p>
           <div className="text-center py-5">
@@ -191,7 +189,6 @@ function MyAccount() {
   if (error) {
     return (
       <div>
-        <Header />
         <div className="container-xl d-flex flex-column pt-5">
           <p className="fs-1 fw-bold text-light text-center mt-5">My Account</p>
           <div className="alert alert-danger m-4">
@@ -207,7 +204,6 @@ function MyAccount() {
 
   return (
     <div>
-      <Header></Header>
       <div className="container-xl d-flex flex-column pt-5">
         <p className="fs-1 fw-bold text-light text-center mt-5">My Account</p>
         

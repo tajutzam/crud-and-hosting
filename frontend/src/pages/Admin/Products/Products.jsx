@@ -1,14 +1,12 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./Products.css";
 
-import Header from "../Header";
 
 import ProductCard from "./ProductCard";
 
 function Products() {
   return (
     <div className="">
-      <Header></Header>
       <div className="pt-5 mt-5">
         <div className="container-lg">
           <div className="row p-2 pb-5">

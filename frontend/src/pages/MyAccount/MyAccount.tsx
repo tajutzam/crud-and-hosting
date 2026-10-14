@@ -1,5 +1,4 @@
 
-import Header from "../../Header";
 import "./MyAccount.css";
 
 import Baris from "../../Baris";
@@ -21,7 +20,6 @@ function MyAccount({
 }: ProfileProps) {
   return (
     <div>
-      <Header></Header>
       <div className="container-xl d-flex flex-column pt-5">
         <p className="fs-1 fw-bold text-light text-center mt-5">My Account</p>
         <div className="profile m-auto mb-5 d-none d-md-flex">

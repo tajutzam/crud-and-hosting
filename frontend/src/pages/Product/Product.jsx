@@ -1,27 +1,43 @@
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import productService from "../services/productService";
+import { useCart } from "../hooks/useCart";
+
+import mainProductImage from '../assets/image1.png';
+import Upload from '../assets/upload.svg';
+import HeartFill from '../assets/heart-fill.svg';
+import HeartEmpty from '../assets/heart-empty.svg';
+
 const API_URL = import.meta.env.VITE_API_BASE_URL 
-  ? import.meta.env.VITE_API_BASE_URL.replace('/api', '') 
+  ? import.meta.env.VITE_API_BASE_URL.replace(/\/api\/?$/, '') 
   : 'http://localhost:8000';
 
-import React, { useState } from "react";
-
-import "./Product.css";
-import Header from "../../Header";
-
-import mainProductImage from '../../assets/image1.png';
-import Upload from '../../assets/upload.svg';
-import HeartFill from '../../assets/heart-fill.svg';
-import HeartEmpty from '../../assets/heart-empty.svg';
-
 function Product() {
+    const { id } = useParams();
+    const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('M');
     const [isLiked, setIsLiked] = useState(false); 
+    const { addToCart } = useCart();
+
+    useEffect(() => {
+        if (!id) return;
+        const fetchProduct = async () => {
+            try {
+                const data = await productService.getProductById(id);
+                setProduct(data);
+            } catch (err) {
+                console.error("Failed to fetch product:", err);
+            }
+        };
+        fetchProduct();
+    }, [id]);
 
     const handleQuantityChange = (type) => {
         if (type === 'increase') {
-            setQuantity(prevQuantity => prevQuantity + 1);
+            setQuantity(prev => prev + 1);
         } else if (type === 'decrease' && quantity > 1) {
-            setQuantity(prevQuantity => prevQuantity - 1);
+            setQuantity(prev => prev - 1);
         }
     };
 
@@ -30,27 +46,37 @@ function Product() {
     };
 
     const toggleLike = () => {
-        setIsLiked(prevIsLiked => !prevIsLiked);
+        setIsLiked(prev => !prev);
+    };
+
+    const handleAddToCart = () => {
+        if (product) {
+            addToCart(product, quantity);
+        }
+    };
+
+    const getImageUrl = () => {
+        if (!product) return mainProductImage;
+        const imgPath = product.product_images?.[0]?.image_path || product.image;
+        if (!imgPath) return mainProductImage;
+        if (imgPath.startsWith('http')) return imgPath;
+        return `${API_URL}/storage/${imgPath}`;
     };
 
     return (
         <div>
-            <Header></Header>
             <div className="product-page-content py-5">
                 <div className="container-xxl product-container">
                     <div className="row pt-5">
-                        <div className="col-lg-7 product-image-section d-flex  align-items-start position-relative">
+                        <div className="col-lg-7 product-image-section d-flex align-items-start position-relative">
                             <div className="action-buttons d-flex flex-column flex-lg-row me-3">
                                 <div>
                                     <img 
-                                        src={
-                                            product?.image 
-                                            ? (product.image.startsWith('http') ? product.image : `${API_URL}/storage/${product.image}`)
-                                            : mainProductImage
-                                        } 
+                                        src={getImageUrl()} 
                                         alt={product?.name || "Product Main"} 
-                                        className="img-fluid product-main-image" 
-                                        />
+                                        className="img-fluid product-main-image rounded shadow-sm"
+                                        onError={(e) => { e.currentTarget.src = mainProductImage; }}
+                                    />
                                 </div>
                                 <div className="d-flex flex-row flex-lg-column mt-3 mt-lg-0">
                                     <button className="icon-button mb-3">
@@ -70,19 +96,26 @@ function Product() {
                         </div>
 
                         <div className="col-lg-5 product-details-section">
+                            <h2 className="fw-bold mb-2">{product?.name || "Product Details"}</h2>
+                            {product?.category && (
+                                <span className="badge bg-secondary mb-3">{product.category.name}</span>
+                            )}
                             <div className="d-flex align-items-center mb-3">
-                                <span className="original-price me-2">150.000,00</span>
-                                <span className="current-price me-3">100.000,00</span>
-                                <span className="sold-info me-3">• 1,238 Sold</span>
-                                <span className="rating-info">⭐ 4.5</span>
+                                <span className="current-price text-danger fs-3 fw-bold me-3">
+                                    Rp {(product?.base_price ?? 0).toLocaleString('id-ID')}
+                                </span>
+                                {product?.reseller_price && (
+                                    <span className="text-muted text-decoration-line-through me-3">
+                                        Rp {(product.reseller_price).toLocaleString('id-ID')}
+                                    </span>
+                                )}
+                                <span className="sold-info me-3">• Tersedia</span>
+                                <span className="rating-info">⭐ 5.0</span>
                             </div>
 
                             <h4 className="product-title mb-2">Description:</h4>
-                            <p className="product-description mb-4">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo, See More...
+                            <p className="product-description mb-4 text-muted">
+                                {product?.description || "Tidak ada deskripsi produk."}
                             </p>
 
                             <div className="color-options mb-4">
@@ -103,7 +136,13 @@ function Product() {
                             </div>
 
                             <div className="d-flex align-items-center mb-4">
-                                <button className="add-to-cart-button me-3">Add To Cart</button>
+                                <button 
+                                    className="add-to-cart-button me-3"
+                                    onClick={handleAddToCart}
+                                    disabled={!product}
+                                >
+                                    Add To Cart
+                                </button>
                                 <div className="quantity-control d-flex align-items-center">
                                     <button className="quantity-button" onClick={() => handleQuantityChange('decrease')}>-</button>
                                     <span className="quantity-display">{quantity}</span>

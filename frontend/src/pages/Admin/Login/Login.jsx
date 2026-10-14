@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-
-import './Login.css'
-
-import EyeFill from '../../../assets/eye-fill.svg'
-import EyeShut from '../../../assets/eye-slash.svg' 
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthContext';
+import './Login.css';
+import EyeFill from '../../../assets/eye-fill.svg';
+import EyeShut from '../../../assets/eye-slash.svg';
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -45,18 +45,10 @@ function Login() {
         <div>
             <div className='register'>
                 <div className='container-xl row'>
-<<<<<<<< HEAD:src/pages/Login.jsx
-                    <div className='col-7 m-auto d-none d-lg-flex'>
-                        <img src={dishineLogo} className='w-75' alt="Dishine Logo" />
-                    </div>
-                    <div className='col-lg-5 col-sm-10 d-flex m-auto justify-content-center'>
-                        <form className='form' onSubmit={handleSubmit}>
-========
                     <div className='col-11 col-sm-10 col-lg-6 d-flex m-auto justify-content-center'>
-                        <form className='form'>
->>>>>>>> refs/remotes/origin/main:src/pages/Admin/Login/Login.jsx
+                        <form className='form' onSubmit={handleSubmit}>
                             <h3 className='mb-3'>
-                                Login to your account
+                                Admin Login
                             </h3>
                             
                             {error && (
@@ -116,15 +108,6 @@ function Login() {
                             >
                                 {loading ? 'Logging in...' : 'Login Account'}
                             </button>
-<<<<<<<< HEAD:src/pages/Login.jsx
-                            <p className='text-center'>
-                                Don't Have An Account?
-                                <Link to="/Register" className='link ms-2'>
-                                    Sign Up
-                                </Link>
-                            </p>
-========
->>>>>>>> refs/remotes/origin/main:src/pages/Admin/Login/Login.jsx
                         </form>
                     </div>
                 </div>

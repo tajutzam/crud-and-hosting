@@ -1,96 +1,65 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useState, useEffect } from 'react';
 import authService from '../services/authService';
 
-const AuthContext = createContext(null);
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const initAuth = async () => {
+    const loadUser = async () => {
       try {
-        const token = authService.getToken();
-        if (token) {
-          const userData = authService.getUser();
-          if (userData) {
-            setUser(userData);
-            setIsAuthenticated(true);
-          } else {
-            const currentUser = await authService.getCurrentUser();
-            if (currentUser) {
-              setUser(currentUser);
-              setIsAuthenticated(true);
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Error initializing auth:', error);
-        authService.logout();
+        const currentUser = await authService.getCurrentUser();
+        setUser(currentUser);
+      } catch (err) {
+        console.error('Failed to load user', err);
       } finally {
         setLoading(false);
       }
     };
 
-    initAuth();
+    loadUser();
   }, []);
 
   const login = async (email, password) => {
     try {
       const data = await authService.login(email, password);
-      const userData = data.user || authService.getUser();
-      setUser(userData);
-      setIsAuthenticated(true);
-      return { success: true, data };
-    } catch (error) {
-      return { success: false, error: error.message };
-    }
-  };
-
-  const register = async (email, password, name) => {
-    try {
-      const data = await authService.register(email, password, name);
-      const userData = data.user || authService.getUser();
-      setUser(userData);
-      setIsAuthenticated(true);
-      return { success: true, data };
+      setUser(data.user || null);
+      return { success: true, ...data };
     } catch (error) {
       return { success: false, error: error.message };
     }
   };
 
   const logout = async () => {
+    await authService.logout();
+    setUser(null);
+  };
+
+  const register = async (userData) => {
     try {
-      await authService.logout();
-      setUser(null);
-      setIsAuthenticated(false);
+      const data = await authService.register(userData);
+      setUser(data.user || null);
+      return { success: true, ...data };
     } catch (error) {
-      console.error('Error logging out:', error);
-      setUser(null);
-      setIsAuthenticated(false);
+      return { success: false, error: error.message };
     }
   };
 
   const value = {
     user,
     loading,
-    isAuthenticated,
     login,
-    register,
     logout,
+    register,
+    isAuthenticated: !!user,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
-
-export default AuthContext;
-

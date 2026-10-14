@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
+import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 import "../styles/Cart.css";
 import CartFAQ from "../components/CartFAQ";
 import PlaceholderProductCard from "../assets/PlaceholderProductCard.png";
@@ -9,7 +9,6 @@ import { BiTrash, BiPlus, BiMinus, BiArrowBack } from "react-icons/bi";
 const BACKEND_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/api\/?$/, '');
 
 function Cart() {
-  const navigate = useNavigate();
   const { cartItems, cartTotal, loading, updateQuantity, removeFromCart } = useCart();
 
   const getItemImage = (item) => {

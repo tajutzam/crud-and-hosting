@@ -8,7 +8,7 @@ import Loading from '../../components/Loading';
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
   const [formLoading, setFormLoading] = useState(false);

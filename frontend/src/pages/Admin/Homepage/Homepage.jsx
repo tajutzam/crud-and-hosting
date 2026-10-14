@@ -1,15 +1,13 @@
-import Header from "../Header";
 import "./HomePage.css";
 
-import dishineHeroSmall1 from "../../../assets/DishineHeroSmall1.jpeg";
-import dishineHeroSmall2 from "../../../assets/DishineHeroSmall2.jpeg";
+// unused hero asset: dishineHeroSmall1 from "../../../assets/DishineHeroSmall1.jpeg";
+// unused hero asset: dishineHeroSmall2 from "../../../assets/DishineHeroSmall2.jpeg";
 import LeftArrow from "../../../assets/LeftArrow.png";
 import RightArrow from "../../../assets/RightArrow.png";
 
 function HomePage() {
   return (
     <div>
-      <Header></Header>
       <div className="pt-5 mt-5">
         <div className="analytics">
           <div className=" container-lg py-5">

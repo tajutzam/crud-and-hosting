@@ -1,23 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import "../styles/AdminLayout.css";
 
 export default function AdminLayout() {
   return (
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        background: "#FAF6F0"
-      }}
-    >
+    <div className="admin-layout">
       <Sidebar />
-      <div
-        style={{
-          flex: 1,
-          padding: "32px 40px",
-          overflowY: "auto"
-        }}
-      >
+      <div className="admin-content">
         <Outlet />
       </div>
     </div>

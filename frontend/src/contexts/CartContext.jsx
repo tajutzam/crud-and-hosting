@@ -1,103 +1,79 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useState, useEffect } from 'react';
 import cartService from '../services/cartService';
-import { useAuth } from './AuthContext';
 
-const CartContext = createContext(null);
-
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-};
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { isAuthenticated } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [feedback, setFeedback] = useState(null); // { type: 'success' | 'danger', message: string }
+  const [feedback, setFeedback] = useState(null);
 
   const showFeedback = (type, message) => {
     setFeedback({ type, message });
-    setTimeout(() => {
-      setFeedback(null);
-    }, 3500);
+    setTimeout(() => setFeedback(null), 4000);
   };
 
-  const refreshCart = useCallback(async () => {
-    if (!isAuthenticated) {
-      setCartItems([]);
+  const refreshCart = async () => {
+    try {
+      setLoading(true);
+      const data = await cartService.getCart();
+      setCartItems(data?.data || data || []);
+    } catch (err) {
+      console.error('Failed to refresh cart:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    refreshCart();
+  }, []);
+
+  const addToCart = async (product, quantity = 1) => {
+    try {
+      setLoading(true);
+      await cartService.addToCart(product.id, quantity);
+      showFeedback('success', 'Produk berhasil ditambahkan ke keranjang.');
+      await refreshCart();
+    } catch (err) {
+      console.error('Failed to add to cart:', err);
+      showFeedback('danger', err.message || 'Gagal menambahkan ke keranjang.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateQuantity = async (cartItemId, newQuantity) => {
+    if (newQuantity < 1) {
+      await removeFromCart(cartItemId);
       return;
     }
     try {
       setLoading(true);
-      const items = await cartService.getCart();
-      setCartItems(Array.isArray(items) ? items : []);
-    } catch (err) {
-      console.error('Failed to load cart:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    refreshCart();
-  }, [refreshCart]);
-
-  const addToCart = async (product, quantity = 1, variantId = null) => {
-    if (!isAuthenticated) {
-      showFeedback('danger', 'Silakan login terlebih dahulu untuk menambahkan produk ke keranjang!');
-      return false;
-    }
-
-    try {
-      const productId = product?.id || product;
-      await cartService.addToCart({
-        product_id: productId,
-        quantity,
-        product_variant_id: variantId,
-      });
-
-      await refreshCart();
-      showFeedback('success', `"${product?.name || 'Produk'}" berhasil ditambahkan ke keranjang!`);
-      return true;
-    } catch (err) {
-      showFeedback('danger', err.message || 'Gagal menambahkan produk ke keranjang.');
-      return false;
-    }
-  };
-
-  const updateQuantity = async (cartId, newQuantity) => {
-    if (newQuantity < 1) {
-      return removeFromCart(cartId);
-    }
-    try {
-      // Optimistic update
-      setCartItems(prev =>
-        prev.map(item =>
-          item.id === cartId ? { ...item, quantity: newQuantity } : item
-        )
-      );
-      await cartService.updateQuantity(cartId, newQuantity);
+      await cartService.updateCartItem(cartItemId, newQuantity);
       await refreshCart();
     } catch (err) {
       console.error('Failed to update quantity:', err);
-      showFeedback('danger', 'Gagal mengubah jumlah barang.');
+      showFeedback('danger', 'Gagal memperbarui jumlah.');
       await refreshCart();
+    } finally {
+      setLoading(false);
     }
   };
 
-  const removeFromCart = async (cartId) => {
+  const removeFromCart = async (cartItemId) => {
     try {
-      setCartItems(prev => prev.filter(item => item.id !== cartId));
-      await cartService.removeFromCart(cartId);
+      setLoading(true);
+      await cartService.removeFromCart(cartItemId);
       showFeedback('success', 'Produk berhasil dihapus dari keranjang.');
       await refreshCart();
     } catch (err) {
       console.error('Failed to remove from cart:', err);
       showFeedback('danger', 'Gagal menghapus produk dari keranjang.');
       await refreshCart();
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -3,7 +3,6 @@ import "./Categories.css"; // Make sure to import your CSS
 
 import "../Customers/Customers.css"
 
-import Header from "../Header";
 import {
   BiSearch,
   BiSortAlt2,
@@ -35,7 +34,6 @@ const categories: Category[] = [
 const Categories = () => {
   return (
     <div className="container-fluid mt-4">
-      <Header></Header>
       <div className="container-xl py-5 mt-5">
         {/* Page Header with Title and Add Button */}
         <div className="page-header">

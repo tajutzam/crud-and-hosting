@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/Product.css";
-import Header from "../components/layout/Header";
 import productService from "../services/productService";
-import { useCart } from "../contexts/CartContext";
+import { useCart } from "../hooks/useCart";
 import PlaceholderProductCard from "../assets/PlaceholderProductCard.png";
 
 import mainProductImage from '../assets/image1.png';
@@ -54,7 +53,6 @@ function Product() {
 
     return (
         <div>
-            <Header></Header>
             <div className="product-page-content py-5">
                 <div className="container-xxl product-container">
                     <div className="row pt-5">

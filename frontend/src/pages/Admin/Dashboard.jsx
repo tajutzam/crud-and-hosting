@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import dashboardService from '../../services/dashboardService';
 import Loading from '../../components/Loading';
@@ -96,7 +96,8 @@ const Dashboard = () => {
   const recentProducts = data?.recent_products || [];
   const recentOrders = data?.recent_orders || [];
 
-  const StatCard = ({ icon: Icon, title, value, subtitle, color, bgColor, items }) => (
+  // eslint-disable-next-line no-unused-vars
+  const StatCard = ({ icon: StatIcon, title, value, subtitle, color, bgColor, items }) => (
     <div className="col-12 col-sm-6 col-xl-3">
       <div className="card border-0 rounded-4 shadow-sm h-100 overflow-hidden transition-all" 
         style={{ background: `linear-gradient(135deg, ${bgColor}1a 0%, ${bgColor}05 100%)` }}>
@@ -108,7 +109,7 @@ const Dashboard = () => {
             </div>
             <div className={`rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 ${color} text-white`} 
               style={{ width: 52, height: 52, fontSize: '24px' }}>
-              <Icon />
+              <StatIcon />
             </div>
           </div>
           {subtitle && (

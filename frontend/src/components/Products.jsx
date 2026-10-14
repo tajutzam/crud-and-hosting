@@ -40,9 +40,13 @@ function Products() {
   }
 
   return (
-    <div className="container-xl">
-      <div className="d-flex">
-        <p className="fs-4 fw-semibold">Products</p>
+    <div className="container-xl catalogue-inner">
+      <div className="catalogue-heading">
+        <div>
+          <p className="eyebrow mb-2">CURATED FOR YOU</p>
+          <h2 className="display-font">Latest pieces</h2>
+        </div>
+        <p className="catalogue-note">Simple silhouettes. Thoughtful details. Made for repeat wear.</p>
       </div>
       {error && (
         <div className="alert alert-warning" role="alert">

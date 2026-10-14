@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../../contexts/CartContext";
+import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 import orderService from "../../services/orderService";
 import PlaceholderProductCard from "../../assets/PlaceholderProductCard.png";
 import mail from "../../assets/mail.png";
@@ -10,7 +10,6 @@ import "./Checkout.css";
 const BACKEND_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/api\/?$/, '');
 
 function Checkout() {
-  const navigate = useNavigate();
   const { cartItems, cartTotal, clearCart } = useCart();
 
   const [paymentProof, setPaymentProof] = useState(null);

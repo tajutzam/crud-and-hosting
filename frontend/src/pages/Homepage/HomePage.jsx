@@ -1,5 +1,4 @@
 
-import Header from "../../Header";
 import "./HomePage.css";
 import Catalogue from "../../Catalogue";
 
@@ -11,8 +10,7 @@ import RightArrow from '../../assets/RightArrow.png'
 
 function HomePage() {
   return (<div>
-          <Header></Header>
-          <div className="Header w-100 pb-5 py-5 d-flex justify-content-center align-items-center">
+              <div className="Header w-100 pb-5 py-5 d-flex justify-content-center align-items-center">
               <div className="d-none d-md-flex container-xl mt-5 p-2 row d-flex justify-content-center align-items-center">
                 <div className="col-1 me-xl-auto">
                   <div className="arrow-container">

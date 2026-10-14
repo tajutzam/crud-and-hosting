@@ -1,62 +1,27 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
+import { FiBox, FiClipboard, FiGrid, FiLayers } from 'react-icons/fi';
+import './Sidebar.css';
 
 const adminMenu = [
-  {
-    name: "Dashboard",
-    path: "/admin/dashboard",
-  },
-  {
-    name: "Products",
-    path: "/admin/products",
-  },
-  {
-    name: "Categories",
-    path: "/admin/categories",
-  },
-  {
-    name: "Order",
-    path: "/admin/orders",
-  },
+  { name: 'Dashboard', path: '/admin/dashboard', icon: FiGrid },
+  { name: 'Products', path: '/admin/products', icon: FiBox },
+  { name: 'Categories', path: '/admin/categories', icon: FiLayers },
+  { name: 'Orders', path: '/admin/orders', icon: FiClipboard },
 ];
 
 const Sidebar = () => {
   const location = useLocation();
-
   return (
-    <aside
-      style={{
-        width: "220px",
-        background: "#ffffff",
-        height: "100vh",
-        padding: "20px 0",
-        borderRight: "2px solid rgba(0,0,0,.1)"
-      }}
-    >
-      <div style={{padding: "0 24px", marginBottom: "32px", fontWeight: "bold", fontSize: "1.25rem"}}>
-        Dishine Backoffice
-      </div>
-      <nav>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {adminMenu.map((item) => (
-            <li key={item.path}>
-              <Link
-                to={item.path}
-                style={{
-                  display: "block",
-                  padding: "12px 24px",
-                  color: location.pathname === item.path ? "#4F200D" : "#343131",
-                  textDecoration: "none",
-                  background: location.pathname === item.path ? "#FEF3E2" : "transparent",
-                  borderRadius: "4px",
-                  fontWeight: location.pathname === item.path ? "bold" : "normal",
-                }}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <aside className="admin-sidebar">
+      <Link to="/admin/dashboard" className="admin-brand"><span>DS</span><div><strong>DISHINE</strong><small>Backoffice</small></div></Link>
+      <p className="sidebar-label">Workspace</p>
+      <nav className="admin-nav">
+        {/* eslint-disable-next-line no-unused-vars */}
+        {adminMenu.map(({ name, path, icon: NavIcon }) => (
+          <Link key={path} to={path} className={location.pathname === path ? 'active' : ''}><NavIcon /><span>{name}</span></Link>
+        ))}
       </nav>
+      <div className="sidebar-bottom"><p>Manage your store<br />with clarity.</p></div>
     </aside>
   );
 };

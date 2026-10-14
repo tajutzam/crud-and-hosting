@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         try {
             $user = Auth::user();
-            
+
             if (!$user) {
                 return response()->json([
                     'message' => 'User not authenticated'
@@ -111,7 +111,7 @@ class UserController extends Controller
     {
         try {
             $user = Auth::user();
-            
+
             $validated = $request->validate([
                 'name' => 'sometimes|string|max:255',
                 'phone' => 'sometimes|string|max:20',
@@ -121,11 +121,11 @@ class UserController extends Controller
             if (isset($validated['name'])) {
                 $user->name = $validated['name'];
             }
-            
+
             if (isset($validated['phone'])) {
                 $user->phone = $validated['phone'];
             }
-            
+
             if (isset($validated['date_of_birth'])) {
                 $user->date_of_birth = $validated['date_of_birth'];
             }
