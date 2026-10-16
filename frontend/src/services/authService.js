@@ -58,11 +58,14 @@ const authService = {
 
       const data = await get('/auth/user');
       
-      if (data.user) {
-        localStorage.setItem('user', JSON.stringify(data.user));
+      // The API returns the authenticated user directly, while login returns
+      // it under a `user` property. Support both response shapes.
+      const user = data.user || data;
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
       }
 
-      return data.user;
+      return user;
     } catch (error) {
       console.error('Error getting current user:', error);
       logout();

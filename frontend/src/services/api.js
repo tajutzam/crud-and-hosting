@@ -28,8 +28,6 @@ const api = async (endpoint, options = {}) => {
     // Handle token expiration
     if (response.status === 401) {
       removeAuthData();
-      // Optionally redirect to login
-      window.location.href = '/login';
       throw new Error('Session expired');
     }
 
@@ -78,7 +76,6 @@ export const postForm = async (endpoint, formData) => {
 
     if (response.status === 401) {
       removeAuthData();
-      window.location.href = '/login';
       throw new Error('Session expired');
     }
 
