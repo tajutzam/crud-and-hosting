@@ -13,6 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // API requests should return a JSON 401 response instead of trying
+        // to redirect to the web-only "login" route.
+        $middleware->redirectGuestsTo(function (Request $request) {
+            return $request->is('api/*') ? null : '/login';
+        });
+
         $middleware->alias([
             'role' => App\Http\Middleware\CheckRole::class,
         ]);

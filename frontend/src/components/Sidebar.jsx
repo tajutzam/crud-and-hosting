@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { FiBox, FiClipboard, FiGrid, FiLayers } from 'react-icons/fi';
+import { FiBox, FiClipboard, FiGrid, FiLayers, FiUsers } from 'react-icons/fi';
 import './Sidebar.css';
 
 const adminMenu = [
@@ -7,6 +7,7 @@ const adminMenu = [
   { name: 'Products', path: '/admin/products', icon: FiBox },
   { name: 'Categories', path: '/admin/categories', icon: FiLayers },
   { name: 'Orders', path: '/admin/orders', icon: FiClipboard },
+  { name: 'Customers', path: '/admin/customers', icon: FiUsers },
 ];
 
 const Sidebar = () => {

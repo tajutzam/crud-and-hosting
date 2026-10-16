@@ -1,8 +1,4 @@
 /* Page Background (matches your previous file) */
-body {
-  background-color: #EEEEEE;
-}
-
 /* The gray pill-shaped toolbar at the top */
 .toolbar-container {
   background-color: #F8F9FA; /* Very light gray */

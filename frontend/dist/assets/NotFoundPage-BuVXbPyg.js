@@ -1,0 +1,1 @@
+import{j as o,L as e}from"./index-CA-bzwkL.js";function r(){return o.jsxs("div",{children:[o.jsx("h2",{children:"404 - Page Not Found!"}),o.jsx("p",{children:"Sorry, the page you are looking for does not exist."}),o.jsx(e,{to:"/",children:"Go back to the Homepage"})]})}export{r as default};

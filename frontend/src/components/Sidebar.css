@@ -1,14 +1,14 @@
-.admin-sidebar { width: 244px; min-width: 244px; min-height: 100vh; padding: 28px 16px; display: flex; flex-direction: column; background: #fff; border-right: 1px solid var(--line); }
+.admin-sidebar { width: 252px; min-width: 252px; min-height: 100vh; padding: 30px 18px; display: flex; flex-direction: column; background: #fff; border-right: 1px solid var(--line); position: sticky; top: 0; height: 100vh; }
 .admin-brand { display: flex; align-items: center; gap: 11px; margin: 0 12px 54px; color: var(--ink); text-decoration: none; }
-.admin-brand > span { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--brown-dark); color: #fff; font-size: .75rem; font-weight: 700; }
+.admin-brand > span { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--brown-dark); color: #fff; font-size: .75rem; font-weight: 700; box-shadow: 0 8px 18px rgba(94,60,42,.18); }
 .admin-brand strong, .admin-brand small { display: block; line-height: 1.1; }
 .admin-brand strong { letter-spacing: .16em; font-size: .8rem; }
 .admin-brand small { margin-top: 4px; color: var(--muted); font-size: .68rem; }
 .sidebar-label { margin: 0 14px 12px; color: #a49a92; font-size: .68rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 700; }
 .admin-nav { display: grid; gap: 6px; }
-.admin-nav a { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 600; }
+.admin-nav a { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 12px; color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 600; transition: .2s ease; }
 .admin-nav a svg { font-size: 18px; }
 .admin-nav a:hover { background: var(--sand); color: var(--ink); }
-.admin-nav a.active { background: #f5e7dc; color: var(--brown-dark); }
+.admin-nav a.active { background: #f5e7dc; color: var(--brown-dark); box-shadow: inset 3px 0 0 var(--accent); }
 .sidebar-bottom { margin-top: auto; padding: 18px 14px; border-radius: 14px; background: var(--sand); color: var(--brown-dark); font-size: .8rem; line-height: 1.5; }
 @media (max-width: 700px) { .admin-sidebar { width: 76px; min-width: 76px; padding: 20px 10px; } .admin-brand { margin: 0 auto 45px; } .admin-brand div, .sidebar-label, .admin-nav a span, .sidebar-bottom { display: none; } .admin-nav a { justify-content: center; padding: 13px; } }

@@ -1,3 +1,60 @@
-.admin-layout { display: flex; min-height: 100vh; background: #f8f5f2; }
-.admin-content { flex: 1; min-width: 0; padding: 36px clamp(20px, 4vw, 52px); overflow-y: auto; }
-@media (max-width: 700px) { .admin-content { padding: 24px 16px; } }
+.admin-layout { display: flex; min-height: 100vh; background: var(--cream); }
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 46px) clamp(18px, 4vw, 52px);
+  overflow-x: hidden;
+}
+
+/* Shared admin surfaces. The pages still use Bootstrap utility classes, but
+   these scoped rules give the entire backoffice one visual language. */
+.admin-content > * { max-width: 1240px; margin-left: auto; margin-right: auto; }
+.admin-content .container-fluid,
+.admin-content .container-xl { width: 100%; max-width: none; padding-left: 0; padding-right: 0; }
+.admin-content .container-fluid.mt-4,
+.admin-content .container-xl.mt-5 { margin-top: 0 !important; }
+.admin-content .container-xl.py-5 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.admin-content h1, .admin-content h2, .admin-content h3,
+.admin-content h4, .admin-content h5, .admin-content h6 { color: var(--ink); letter-spacing: -.02em; }
+.admin-content h4 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+.admin-content .text-muted { color: var(--muted) !important; }
+.admin-content .card,
+.admin-content .bg-white { border: 1px solid var(--line) !important; box-shadow: 0 12px 30px rgba(69, 43, 28, .06) !important; }
+.admin-content .card { border-radius: 18px !important; overflow: hidden; }
+.admin-content .card-header { background: #fff !important; border-bottom: 1px solid var(--line) !important; }
+.admin-content .table { --bs-table-bg: transparent; --bs-table-striped-bg: #fcfaf8; color: var(--ink); margin-bottom: 0; }
+.admin-content .table > :not(caption) > * > * { padding: .9rem 1rem; border-bottom-color: var(--line); }
+.admin-content .table thead th,
+.admin-content .custom-table thead th { background: #faf7f4; color: #8b8078; border-bottom: 1px solid var(--line); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.admin-content .table-hover > tbody > tr:hover > * { --bs-table-accent-bg: #fff9f4; }
+.admin-content .table-striped > tbody > tr:nth-of-type(odd) > * { --bs-table-accent-bg: #fdfbf9; }
+.admin-content .btn-primary,
+.admin-content .btn-brown,
+.admin-content .button-add { background: var(--brown-dark); border-color: var(--brown-dark); color: #fff; }
+.admin-content .btn-primary:hover,
+.admin-content .btn-brown:hover,
+.admin-content .button-add:hover { background: var(--brown); border-color: var(--brown); color: #fff; }
+.admin-content .btn-outline-primary { color: var(--brown-dark); border-color: #d9bda9; }
+.admin-content .btn-outline-primary:hover { background: var(--brown-dark); border-color: var(--brown-dark); color: #fff; }
+.admin-content .btn, .admin-content .form-control, .admin-content .form-select { border-radius: 10px; }
+.admin-content .form-control, .admin-content .form-select { border-color: var(--line); padding-top: .65rem; padding-bottom: .65rem; }
+.admin-content .form-control:focus, .admin-content .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 .2rem rgba(200, 117, 75, .15); }
+.admin-content .toolbar-container { border: 1px solid var(--line); background: #faf7f4; border-radius: 12px; }
+.admin-content .badge { border-radius: 999px; padding: .45em .7em; font-weight: 600; }
+.admin-content .alert { border-radius: 12px; }
+.admin-content > div > .d-flex.justify-content-between { padding-bottom: 4px; }
+.admin-content > div > .d-flex.justify-content-between h4 { margin-bottom: 0; font-weight: 700; }
+.admin-content > div > .table-responsive { background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 12px 30px rgba(69, 43, 28, .06); padding: 8px; }
+.admin-content .row.g-4 .card-img-top { border-radius: 18px 18px 0 0; }
+.admin-content .row.g-4 .card-body { padding: 1.15rem; }
+.admin-content .row.g-4 .card-title { font-weight: 700; }
+.admin-content .row.g-4 .card .btn-outline-danger { color: #a65043; border-color: #e2b4aa; }
+.admin-content .row.g-4 .card .btn-outline-danger:hover { background: #a65043; border-color: #a65043; color: #fff; }
+.admin-content .dash-root { max-width: none; }
+.admin-content .dash-root .container-xl { max-width: 1240px; margin-left: auto; margin-right: auto; }
+
+@media (max-width: 700px) {
+  .admin-content { padding: 24px 16px; }
+  .admin-content .page-header { align-items: flex-start; gap: 14px; }
+  .admin-content .page-header, .admin-content > * > .d-flex.justify-content-between { flex-wrap: wrap; }
+}
