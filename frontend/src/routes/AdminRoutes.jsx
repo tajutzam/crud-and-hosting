@@ -1,9 +1,9 @@
 import { Route } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 
-import Dashboard from "../pages/admin/Dashboard";
-import Category from "../pages/admin/Category";
-import ProductAdmin from "../pages/admin/ProductAdmin";
+import Dashboard from "../pages/Admin/Dashboard";
+import Category from "../pages/Admin/Category";
+import ProductAdmin from "../pages/Admin/ProductAdmin";
 import Orders from "../pages/Admin/Orders/Orders";
 import Customers from "../pages/Admin/Customers/Customers";
 
